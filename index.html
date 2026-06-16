@@ -114,6 +114,80 @@
             color: var(--text-primary);
         }
 
+        /* ==================== DROPDOWN ==================== */
+        .nav-links li.dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle .chevron {
+            font-size: 0.65rem;
+            transition: transform var(--transition);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(13, 13, 20, 0.96);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            list-style: none;
+            width: 260px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem !important;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+            border-left: 2px solid transparent;
+            text-align: left;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.03);
+            border-left-color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        /* Show Dropdown on Hover for desktop */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown:hover .dropdown-toggle .chevron {
+                transform: rotate(180deg);
+            }
+        }
+
         .nav-toggle {
             display: none;
             background: none;
@@ -976,6 +1050,35 @@
             }
 
             .btn { justify-content: center; }
+
+            /* Mobile Dropdown styles */
+            .dropdown-menu {
+                position: static;
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                width: 100%;
+                padding: 0.5rem 0 0.5rem 1.5rem;
+                display: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            .dropdown.open .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-toggle {
+                justify-content: space-between;
+                width: 100%;
+            }
         }
 
         /* Scrollbar */
@@ -1005,7 +1108,17 @@
             <a href="#" class="nav-logo">nelio<span></span>Tec</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#projetos">Projetos</a></li>
+                <li class="dropdown">
+                    <a href="#projetos" class="dropdown-toggle">Projetos <span class="chevron">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#projeto-cinema">Cinema Nacional</a></li>
+                        <li><a href="#projeto-eleicoes">Eleições Municipais</a></li>
+                        <li><a href="#projeto-cnpj">Dinâmica Empresarial (CNPJ)</a></li>
+                        <li><a href="#projeto-loja">Desempenho Comercial (Loja)</a></li>
+                        <li><a href="#projeto-tapajos">Gestão de Contratos (Tapajós)</a></li>
+                        <li><a href="#projeto-orcamentario">Monitoramento Orçamentário</a></li>
+                    </ul>
+                </li>
                 <li><a href="#experiencia">Experiencia</a></li>
                 <li><a href="https://www.linkedin.com/in/joseneliorj/" target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
@@ -1134,6 +1247,18 @@
                     <a href="#projeto-cnpj" class="projects-menu-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         Dinâmica Empresarial (CNPJ)
+                    </a>
+                    <a href="#projeto-loja" class="projects-menu-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        Desempenho Comercial (Loja)
+                    </a>
+                    <a href="#projeto-tapajos" class="projects-menu-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                        Gestão de Contratos (Tapajós)
+                    </a>
+                    <a href="#projeto-orcamentario" class="projects-menu-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Monitoramento Orçamentário
                     </a>
                 </div>
             </div>
@@ -1375,6 +1500,247 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Separador entre Projetos -->
+            <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
+
+            <div id="projeto-loja" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+                <!-- Informações do Projeto (Esquerda) -->
+                <div class="project-info">
+                    <div class="project-tech-badges">
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">SQL</span>
+                        <span class="tech-badge">ETL/ELT</span>
+                        <span class="tech-badge">Power BI</span>
+                    </div>
+                    <h3 class="showcase-title">Pipeline de Dados: Desempenho Comercial (Loja)</h3>
+                    <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <p class="showcase-description">
+                        Este projeto demonstra o ciclo completo de Business Intelligence e Engenharia de Dados focado no varejo comercial. O pipeline inicia-se com a extração e restauração de backups gerados por um sistema ERP de vendas, prossegue com tratamentos avançados via queries SQL no PostgreSQL para consolidação e estruturação dimensional do banco de dados, e finaliza com a criação de painéis gerenciais altamente analíticos no Power BI.
+                    </p>
+                    
+                    <div class="treatment-details">
+                        <h4 class="treatment-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:4px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            Tratamentos de Dados & Pipeline:
+                        </h4>
+                        <ul class="treatment-list">
+                            <li>
+                                <strong>Restauração & Carga:</strong> Importação direta a partir de backups de banco de dados gerados por um ERP comercial real, simulando perfeitamente a dinâmica operacional de uma loja.
+                            </li>
+                            <li>
+                                <strong>ETL via SQL no PostgreSQL:</strong> Processo de tratamento de dados centralizado no banco de dados através de queries SQL robustas para sanitização, correção de nulos e modelagem relacional.
+                            </li>
+                            <li>
+                                <strong>Modelagem Dimensional:</strong> Estruturação e relacionamento de tabelas de dimensão fundamentais (Produtos, Vendedores, Clientes, Parceiros, Estoque) com a tabela fato de Vendas, facilitando as análises de cruzamento de dados.
+                            </li>
+                            <li>
+                                <strong>Dashboards no Power BI:</strong> Entrega de visões estratégicas contendo indicadores de faturamento, rentabilidade, desempenho da equipe de vendas, comportamento dos clientes e movimentações de estoque.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="project-actions" style="margin-top: 1.5rem;">
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiNGUzMWNjNWEtOTZkMC00YzNhLWEwOGYtYjE5ODNkNjI4NTQwIiwidCI6IjExY2E4ZWU4LTM0MzQtNDA0Yi04OWI5LTRjNjE0YThiOTY0NSJ9" target="_blank" rel="noopener" class="btn btn-primary">
+                            Visualizar no Power BI
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Galeria de Imagens & BI (Direita) -->
+                <div class="project-gallery reveal reveal-delay-1">
+                    <div class="gallery-tabs">
+                        <button class="gallery-tab active" data-target="loja-powerbi">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            Power BI Interativo
+                        </button>
+                        <button class="gallery-tab" data-target="loja-faturamento">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Faturamento & Vendas
+                        </button>
+                        <button class="gallery-tab" data-target="loja-analise">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            Análise Comercial
+                        </button>
+                        <button class="gallery-tab" data-target="loja-detalhe">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            Detalhamento de Vendas
+                        </button>
+                        <button class="gallery-tab" data-target="loja-modelagem">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Modelagem de Dados
+                        </button>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-panel active" id="panel-loja-powerbi">
+                            <div class="iframe-container">
+                                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGUzMWNjNWEtOTZkMC00YzNhLWEwOGYtYjE5ODNkNjI4NTQwIiwidCI6IjExY2E4ZWU4LTM0MzQtNDA0Yi04OWI5LTRjNjE0YThiOTY0NSJ9" frameborder="0" allowFullScreen="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="gallery-panel" id="panel-loja-faturamento">
+                            <img src="archive/LOJA/LOJA.png" alt="Dashboard Faturamento e Vendas" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-loja-analise">
+                            <img src="archive/LOJA/LOJA2.png" alt="Análise Comercial Detalhada" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-loja-detalhe">
+                            <img src="archive/LOJA/LOJA3.png" alt="Detalhamento de Vendas" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-loja-modelagem">
+                            <img src="archive/LOJA/modelagem_loja.png" alt="Modelagem Relacional de Dados" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separador entre Projetos -->
+            <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
+
+            <div id="projeto-tapajos" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+                <!-- Informações do Projeto (Esquerda) -->
+                <div class="project-info">
+                    <div class="project-tech-badges">
+                        <span class="tech-badge">Power BI</span>
+                        <span class="tech-badge">ArcGIS</span>
+                        <span class="tech-badge">SVG Maps</span>
+                        <span class="tech-badge">Excel</span>
+                        <span class="tech-badge">ETL</span>
+                    </div>
+                    <h3 class="showcase-title">Gestão de Contratos: Projeto Tapajós</h3>
+                    <p class="showcase-subtitle">Business Intelligence & Análise Geográfica</p>
+                    <p class="showcase-description">
+                        Este projeto consiste na estruturação, tratamento e consolidação de dados contratuais. A partir de dados brutos disponibilizados em tabelas Excel desestruturadas, foi realizado um processo completo de ETL para padronização das informações de contratos. O diferencial analítico do projeto inclui a plotagem geográfica de pontos de localização exatos via ArcGIS e a criação de mapas temáticos interativos utilizando SVG, permitindo uma análise espacial avançada e intuitiva da abrangência dos contratos.
+                    </p>
+                    
+                    <div class="treatment-details">
+                        <h4 class="treatment-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:4px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            Tratamentos de Dados & Diferenciais:
+                        </h4>
+                        <ul class="treatment-list">
+                            <li>
+                                <strong>Saneamento & ETL:</strong> Consolidação de planilhas Excel desestruturadas, aplicando regras de negócio para tratamento de valores nulos, tipagem de dados (valores e datas) e remoção de duplicidades.
+                            </li>
+                            <li>
+                                <strong>Pontos de Localização (ArcGIS):</strong> Integração com ArcGIS para plotagem geoespacial precisa dos pontos onde os contratos estão ativos ou sendo executados.
+                            </li>
+                            <li>
+                                <strong>Visualização Customizada em SVG:</strong> Implementação de mapas SVG customizados e interativos no painel para facilitar a navegação territorial e destacar indicadores por região.
+                            </li>
+                            <li>
+                                <strong>Painel Gerencial no Power BI:</strong> Consolidação de todas as métricas em um painel interativo, correlacionando indicadores financeiros e operacionais com dados geográficos.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="project-actions" style="margin-top: 1.5rem;">
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMjQ5MmJmYzItOWJkMC00ZjU5LWI4ZTctMmU5ZWQ0MDNiNmI1IiwidCI6IjExY2E4ZWU4LTM0MzQtNDA0Yi04OWI5LTRjNjE0YThiOTY0NSJ9" target="_blank" rel="noopener" class="btn btn-primary">
+                            Visualizar no Power BI
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Galeria de Imagens & BI (Direita) -->
+                <div class="project-gallery reveal reveal-delay-1">
+                    <div class="gallery-tabs">
+                        <button class="gallery-tab active" data-target="tapajos-powerbi">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            Power BI Interativo
+                        </button>
+                        <button class="gallery-tab" data-target="tapajos-geral">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Dashboard Geral
+                        </button>
+                        <button class="gallery-tab" data-target="tapajos-detalhe">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            Análise Geográfica
+                        </button>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-panel active" id="panel-tapajos-powerbi">
+                            <div class="iframe-container">
+                                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMjQ5MmJmYzItOWJkMC00ZjU5LWI4ZTctMmU5ZWQ0MDNiNmI1IiwidCI6IjExY2E4ZWU4LTM0MzQtNDA0Yi04OWI5LTRjNjE0YThiOTY0NSJ9" frameborder="0" allowFullScreen="true"></iframe>
+                            </div>
+                        </div>
+                        <div class="gallery-panel" id="panel-tapajos-geral">
+                            <img src="archive/TAPAJOS/TAPAJOS.png" alt="Dashboard Geral Tapajós" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-tapajos-detalhe">
+                            <img src="archive/TAPAJOS/TAPAJOS2.png" alt="Análise Geográfica Tapajós" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separador entre Projetos -->
+            <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
+
+            <div id="projeto-orcamentario" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+                <!-- Informações do Projeto (Esquerda) -->
+                <div class="project-info">
+                    <div class="project-tech-badges">
+                        <span class="tech-badge">SQL Server</span>
+                        <span class="tech-badge">Power BI</span>
+                        <span class="tech-badge">ETL/ELT</span>
+                        <span class="tech-badge">Data Warehouse</span>
+                    </div>
+                    <h3 class="showcase-title">Pipeline de Dados: Monitoramento Orçamentário</h3>
+                    <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <p class="showcase-description">
+                        Este projeto consiste no desenvolvimento de uma solução analítica completa para o monitoramento e fiscalização da execução orçamentária municipal. A partir de dados brutos extraídos diretamente da base do sistema de gestão do município, foi estruturado um Data Warehouse em SQL Server. O pipeline de ETL realiza a leitura, cruzamento e consolidação de tabelas de fontes de recursos, receitas, despesas e unidades gestoras, alimentando um dashboard interativo focado na detecção de desvios e controle de gastos.
+                    </p>
+                    
+                    <div class="treatment-details">
+                        <h4 class="treatment-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:4px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            Tratamentos de Dados & Pipeline:
+                        </h4>
+                        <ul class="treatment-list">
+                            <li>
+                                <strong>Extração de Origem:</strong> Ingestão dos lançamentos de receitas e despesas diretamente da base de dados do sistema de contabilidade e gestão pública municipal.
+                            </li>
+                            <li>
+                                <strong>ETL & Unificação:</strong> Cruzamento sistemático de tabelas de fontes de recursos, unidades gestoras, receitas orçadas e despesas empenhadas/liquidadas.
+                            </li>
+                            <li>
+                                <strong>Data Warehouse (SQL Server):</strong> Modelagem dimensional e armazenamento estruturado para garantir integridade analítica e alta performance nas consultas de BI.
+                            </li>
+                            <li>
+                                <strong>Indicadores Estratégicos:</strong> Painel gerencial focado em evidenciar a utilização dos recursos, identificando variações entre valores planejados e executados e analisando gastos por unidade executora.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Galeria de Imagens & BI (Direita) -->
+                <div class="project-gallery reveal reveal-delay-1">
+                    <div class="gallery-tabs">
+                        <button class="gallery-tab active" data-target="orcamentario-geral">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            Visão Geral
+                        </button>
+                        <button class="gallery-tab" data-target="orcamentario-receitas">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                            Despesas & Receitas
+                        </button>
+                        <button class="gallery-tab" data-target="orcamentario-planejado">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Planejado vs Executado
+                        </button>
+                    </div>
+                    <div class="gallery-content">
+                        <div class="gallery-panel active" id="panel-orcamentario-geral">
+                            <img src="archive/ORCAMENTARIO/Monitora Orçamentario1.png" alt="Monitoramento Orçamentário - Visão Geral" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-orcamentario-receitas">
+                            <img src="archive/ORCAMENTARIO/Monitora Orçamentario2.png" alt="Monitoramento Orçamentário - Despesas e Receitas" loading="lazy">
+                        </div>
+                        <div class="gallery-panel" id="panel-orcamentario-planejado">
+                            <img src="archive/ORCAMENTARIO/Monitora Orçamentario3.png" alt="Monitoramento Orçamentário - Planejado vs Executado" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1468,10 +1834,25 @@
             navLinks.classList.toggle('open');
         });
 
-        // Close mobile menu on link click
+        // Dropdown toggle on mobile
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        if (dropdownToggle && dropdown) {
+            dropdownToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                }
+            });
+        }
+
+        // Close mobile menu and dropdown on link click
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('open');
+                if (dropdown) {
+                    dropdown.classList.remove('open');
+                }
             });
         });
 
