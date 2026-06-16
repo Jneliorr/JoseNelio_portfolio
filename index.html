@@ -617,10 +617,20 @@
 
         /* ==================== PROJECTS MENU ==================== */
         .projects-menu {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 64px; /* Sticks right below the fixed header nav */
+            z-index: 90;
+            background: rgba(13, 13, 20, 0.85); /* Matches --bg-secondary with transparency */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 0.5rem;
+            margin: 1.5rem -0.5rem 2.5rem;
+            border-bottom: 1px solid var(--border-subtle);
             display: flex;
             gap: 0.75rem;
-            margin: 2rem 0 3.5rem;
             flex-wrap: wrap;
+            transition: all var(--transition);
         }
 
         .projects-menu-btn {
@@ -664,6 +674,66 @@
             gap: 3rem;
             align-items: start;
             margin-top: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-showcase.collapsed {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-showcase.collapsed:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .project-showcase.collapsed .project-gallery,
+        .project-showcase.collapsed .showcase-description,
+        .project-showcase.collapsed .treatment-details,
+        .project-showcase.collapsed .project-actions {
+            display: none !important;
+        }
+
+        .project-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: all var(--transition);
+        }
+
+        .project-toggle-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-1px);
+        }
+
+        .project-toggle-btn svg {
+            transition: transform var(--transition);
+        }
+
+        .project-showcase:not(.collapsed) .project-toggle-btn svg {
+            transform: rotate(180deg);
+        }
+
+        .project-showcase.collapsed + .project-divider {
+            display: none !important;
         }
 
         .showcase-title {
@@ -1079,6 +1149,32 @@
                 justify-content: space-between;
                 width: 100%;
             }
+
+            /* Mobile Sticky Menu Scrollable Override */
+            .projects-menu {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                padding: 0.8rem 0.5rem !important;
+                margin: 1.5rem -1.25rem 2.5rem !important; /* Adjusted to fit layout margins on mobile */
+                border-radius: 0 !important;
+                gap: 0.5rem !important;
+            }
+
+            .projects-menu::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .projects-menu {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            .projects-menu-btn {
+                white-space: nowrap;
+                padding: 0.45rem 0.9rem !important;
+                font-size: 0.8rem !important;
+            }
         }
 
         /* Scrollbar */
@@ -1263,7 +1359,7 @@
                 </div>
             </div>
             
-            <div id="projeto-cinema" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-cinema" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1277,6 +1373,10 @@
                     </div>
                     <h3 class="showcase-title">Pipeline de Dados: Cinema Nacional</h3>
                     <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto realiza o ciclo completo de Engenharia de Dados: desde a ingestão automatizada de dados de arrecadação, salas e catálogos do portal público do governo federal (GovBr), passando pela limpeza e modelagem dimensional em banco de dados, até a entrega de dashboards interativos e painéis analíticos.
                     </p>
@@ -1351,7 +1451,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div id="projeto-eleicoes" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-eleicoes" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1364,6 +1464,10 @@
                     </div>
                     <h3 class="showcase-title">Pipeline de Dados: Eleições Municipais</h3>
                     <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto realiza o ciclo completo de Engenharia de Dados voltado para dados eleitorais: desde a extração automatizada de perfis de eleitores, locais de votação e boletins de urnas diretamente dos portais abertos do TSE, passando pela limpeza e modelagem dimensional em banco de dados, até a visualização analítica interativa de dados demográficos e de apuração.
                     </p>
@@ -1438,7 +1542,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div id="projeto-cnpj" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-cnpj" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1452,6 +1556,10 @@
                     </div>
                     <h3 class="showcase-title">Pipeline de Dados: Dinâmica Empresarial (CNPJ)</h3>
                     <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto implementa um pipeline híbrido e escalável para processar os dados da base pública de CNPJs da Receita Federal (GovBr), permitindo análises estratégicas de abertura, fechamento e saúde das empresas no município.
                     </p>
@@ -1504,7 +1612,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div id="projeto-loja" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-loja" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1515,6 +1623,10 @@
                     </div>
                     <h3 class="showcase-title">Pipeline de Dados: Desempenho Comercial (Loja)</h3>
                     <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto demonstra o ciclo completo de Business Intelligence e Engenharia de Dados focado no varejo comercial. O pipeline inicia-se com a extração e restauração de backups gerados por um sistema ERP de vendas, prossegue com tratamentos avançados via queries SQL no PostgreSQL para consolidação e estruturação dimensional do banco de dados, e finaliza com a criação de painéis gerenciais altamente analíticos no Power BI.
                     </p>
@@ -1596,7 +1708,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div id="projeto-tapajos" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-tapajos" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1608,6 +1720,10 @@
                     </div>
                     <h3 class="showcase-title">Gestão de Contratos: Projeto Tapajós</h3>
                     <p class="showcase-subtitle">Business Intelligence & Análise Geográfica</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto consiste na estruturação, tratamento e consolidação de dados contratuais. A partir de dados brutos disponibilizados em tabelas Excel desestruturadas, foi realizado um processo completo de ETL para padronização das informações de contratos. O diferencial analítico do projeto inclui a plotagem geográfica de pontos de localização exatos via ArcGIS e a criação de mapas temáticos interativos utilizando SVG, permitindo uma análise espacial avançada e intuitiva da abrangência dos contratos.
                     </p>
@@ -1675,7 +1791,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div id="projeto-orcamentario" class="project-showcase reveal" style="scroll-margin-top: 100px;">
+            <div id="projeto-orcamentario" class="project-showcase reveal collapsed" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1686,6 +1802,10 @@
                     </div>
                     <h3 class="showcase-title">Pipeline de Dados: Monitoramento Orçamentário</h3>
                     <p class="showcase-subtitle">Engenharia de Dados & Business Intelligence</p>
+                    <button class="project-toggle-btn">
+                        <span>Ver detalhes</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                     <p class="showcase-description">
                         Este projeto consiste no desenvolvimento de uma solução analítica completa para o monitoramento e fiscalização da execução orçamentária municipal. A partir de dados brutos extraídos diretamente da base do sistema de gestão do município, foi estruturado um Data Warehouse em SQL Server. O pipeline de ETL realiza a leitura, cruzamento e consolidação de tabelas de fontes de recursos, receitas, despesas e unidades gestoras, alimentando um dashboard interativo focado na detecção de desvios e controle de gastos.
                     </p>
@@ -1897,6 +2017,61 @@
                         targetPanel.classList.add('active');
                     }
                 });
+            });
+        });
+
+        // Toggle project details & automatically expand if clicked from menu anchors
+        document.querySelectorAll('.project-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const showcase = btn.closest('.project-showcase');
+                const isCollapsing = !showcase.classList.contains('collapsed');
+                
+                showcase.classList.toggle('collapsed');
+                
+                const label = btn.querySelector('span');
+                if (showcase.classList.contains('collapsed')) {
+                    label.textContent = 'Ver detalhes';
+                } else {
+                    label.textContent = 'Ocultar detalhes';
+                    // Scroll to showcase when expanding
+                    setTimeout(() => {
+                        showcase.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
+                }
+            });
+        });
+
+        // Expand project if anchor link is clicked
+        const expandProjectByHash = (hash) => {
+            if (!hash) return;
+            const targetShowcase = document.querySelector(hash);
+            if (targetShowcase && targetShowcase.classList.contains('project-showcase')) {
+                if (targetShowcase.classList.contains('collapsed')) {
+                    targetShowcase.classList.remove('collapsed');
+                    const btn = targetShowcase.querySelector('.project-toggle-btn');
+                    if (btn) {
+                        const label = btn.querySelector('span');
+                        if (label) label.textContent = 'Ocultar detalhes';
+                    }
+                }
+                setTimeout(() => {
+                    targetShowcase.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        };
+
+        // Handle page load hash
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                expandProjectByHash(window.location.hash);
+            }
+        });
+
+        // Handle anchor navigation clicks (header dropdown & project menu)
+        document.querySelectorAll('a[href^="#projeto-"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const hash = link.getAttribute('href');
+                expandProjectByHash(hash);
             });
         });
     </script>
