@@ -541,6 +541,48 @@
             height: 14px;
         }
 
+        /* ==================== PROJECTS MENU ==================== */
+        .projects-menu {
+            display: flex;
+            gap: 0.75rem;
+            margin: 2rem 0 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .projects-menu-btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.1rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+
+        .projects-menu-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+            transition: transform var(--transition);
+        }
+
+        .projects-menu-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .projects-menu-btn:hover svg {
+            transform: scale(1.1);
+        }
+
         /* ==================== PROJECT SHOWCASE ==================== */
         .project-showcase {
             display: grid;
@@ -1079,9 +1121,20 @@
                 <div class="section-label">Casos de Estudo</div>
                 <h2 class="section-title">Projetos</h2>
                 <p class="section-description">Aplicações práticas demonstrando o ciclo completo de Engenharia de Dados (ETL/ELT) e Analytics Business Intelligence.</p>
+                
+                <div class="projects-menu reveal reveal-delay-1">
+                    <a href="#projeto-cinema" class="projects-menu-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                        Cinema Nacional
+                    </a>
+                    <a href="#projeto-eleicoes" class="projects-menu-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>
+                        Eleições Municipais
+                    </a>
+                </div>
             </div>
             
-            <div class="project-showcase reveal">
+            <div id="projeto-cinema" class="project-showcase reveal" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
@@ -1169,7 +1222,7 @@
             <!-- Separador entre Projetos -->
             <hr class="project-divider" style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--border-subtle), transparent); margin: 5rem 0 4rem;">
 
-            <div class="project-showcase reveal">
+            <div id="projeto-eleicoes" class="project-showcase reveal" style="scroll-margin-top: 100px;">
                 <!-- Informações do Projeto (Esquerda) -->
                 <div class="project-info">
                     <div class="project-tech-badges">
