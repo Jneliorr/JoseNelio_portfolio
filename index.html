@@ -1451,7 +1451,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <p class="showcase-description">
-                        Este projeto realiza o ciclo completo de Engenharia de Dados: desde a ingestão automatizada de dados de arrecadação, salas e catálogos do portal público do governo federal (GovBr), passando pela limpeza e modelagem dimensional em banco de dados, até a entrega de dashboards interativos e painéis analíticos.
+                        Este projeto realiza o ciclo completo de Engenharia de Dados: desde a ingestão automatizada de dados de público, salas e catálogos do portal público do governo federal (ANCINE), passando pela limpeza e modelagem dimensional em banco de dados, até a entrega de dashboards interativos e painéis analíticos.
                     </p>
                     
                     <div class="treatment-details">
@@ -1461,13 +1461,13 @@
                         </h4>
                         <ul class="treatment-list">
                             <li>
-                                <strong>Ingestão Automática:</strong> Requisições HTTP robustas direto do portal GovBr para obtenção automatizada dos arquivos brutos compactados de arrecadação, salas e catálogos.
+                                <strong>Ingestão Automática:</strong> Requisições HTTP robustas direto do portal ANCINE para obtenção automatizada dos arquivos brutos compactados de público, salas e catálogos.
                             </li>
                             <li>
-                                <strong>Descompactação & Sanitização:</strong> Script Python que descompacta os arquivos, limpa caracteres especiais de strings, trata valores nulos e realiza a tipagem correta de campos numéricos e monetários.
+                                <strong>Descompactação & Sanitização:</strong> Script Python que descompacta os arquivos, limpa caracteres especiais de strings, trata valores nulos e realiza a tipagem correta de campos.
                             </li>
                             <li>
-                                <strong>Armazenamento & dbt:</strong> Carga dos dados tratados no PostgreSQL e modelagem estruturada em camadas Bronze (raw), Prata (limpos e deduplicados) e Gold (dimensões e fatos otimizadas para BI).
+                                <strong>Armazenamento & dbt:</strong> Carga dos dados tratados no PostgreSQL e modelagem.
                             </li>
                             <li>
                                 <strong>Orquestração:</strong> Apache Airflow orquestrando tarefas dentro de containers Docker, gerenciando retentativas, logs de erros e controle de fluxo diário.
@@ -1558,7 +1558,7 @@
                                 <strong>Descompactação & Sanitização:</strong> Script Python que gerencia a descompactação de arquivos brutos ZIP, realiza limpeza de caracteres especiais, trata nulos e define a tipagem correta dos dados.
                             </li>
                             <li>
-                                <strong>Armazenamento & Modelagem (dbt):</strong> Carga no PostgreSQL e estruturação em camadas Bronze, Prata e Gold, consolidando dados e aplicando filtros por Ano e Estado para alta performance em BI.
+                                <strong>Armazenamento & Modelagem (dbt):</strong> Carga no PostgreSQL, consolidando dados e aplicando filtros por Ano e Estado para alta performance em BI.
                             </li>
                             <li>
                                 <strong>Orquestração & Governança:</strong> Fluxo completo orquestrado pelo Apache Airflow rodando em containers Docker, com rotinas de arquivamento para manter o ambiente de processamento limpo e auditável.
